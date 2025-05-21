@@ -1,10 +1,12 @@
 // lib/router/app_router.dart
 
 import 'package:bubbels/screens/Login_screen.dart';
+import 'package:bubbels/screens/SignUp_screen.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
   login,
+  signup,
   home,
   detail,
   settings,
@@ -30,6 +32,11 @@ final GoRouter appRouter = GoRouter(
       path: Login.routeName,
       name: AppRoute.login.name,
       builder: (context, state) => Login(),
+    ),
+    GoRoute(
+      path: SignUp.routeName,
+      name: AppRoute.signup.name,
+      builder: (context, state) => const SignUp(),
     ),
   ],
 );

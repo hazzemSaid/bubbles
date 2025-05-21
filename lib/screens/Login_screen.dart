@@ -2,6 +2,7 @@ import 'package:bubbels/utils/constants.dart';
 import 'package:bubbels/widgets/saved_state.dart';
 import 'package:bubbels/widgets/toggleSwitch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
@@ -16,46 +17,49 @@ class _LoginState extends State<Login> {
   bool isEmailSelected = true;
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
-    final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: height),
+            constraints: BoxConstraints(minHeight: 1.sh), // ScreenUtil height
             child: IntrinsicHeight(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 30,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w, // Responsive horizontal padding
+                  vertical: 30.h, // Responsive vertical padding
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 30, width: width),
-                    Image.asset(
-                      'assets/images/logo1.png',
-                      height: height * 0.1,
-                      fit: BoxFit.contain,
+                    SizedBox(height: 15.h, width: 1.sw), // Responsive spacing
+                    SizedBox(
+                      width: 90.w,
+                      height: 90.h,
+                      child: Image.asset(
+                        'assets/images/logo1.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    const SizedBox(height: 20),
+
+                    SizedBox(height: 15.h), // Responsive height
                     Text(
                       "Welcome Back",
                       style: AppTextStyles.semanticHeading1.copyWith(
-                        fontSize: 24,
+                        fontSize: 24.sp, // Responsive font size
                         color: AppColors.black,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 8.h), // Responsive height
                     Text(
                       "Sign in to continue to your account",
                       style: AppTextStyles.interRegular.copyWith(
-                        fontSize: 16,
+                        fontSize: 16.sp, // Responsive font size
                         color: AppColors.grayChateau,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 15.h), // Responsive height
                     ToggleSwitch(
                       isEmailSelected: isEmailSelected,
                       onToggle: (value) {
@@ -64,13 +68,12 @@ class _LoginState extends State<Login> {
                         });
                       },
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 15.h), // Responsive height
                     state_storage_widget(
                       bucket: bucket,
                       isEmailSelected: isEmailSelected,
                     ),
-
-                    const SizedBox(height: 20),
+                    SizedBox(height: 15.h), // Responsive height
                   ],
                 ),
               ),

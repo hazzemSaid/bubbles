@@ -1,5 +1,7 @@
 import 'package:bubbels/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginOAuthButton extends StatelessWidget {
   const LoginOAuthButton({super.key});
@@ -11,61 +13,34 @@ class LoginOAuthButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          height: 40,
-          width: 40,
+          height: 45,
+          width: 45,
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: AppColors.grayChateau, width: 1.5),
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 6,
-                offset: Offset(0, 2),
-              ),
-            ],
           ),
-          child: Image.asset('assets/images/google.png', height: 40, width: 40),
+          child: SvgPicture.asset('assets/images/google.svg', fit: BoxFit.fill),
         ),
-        const SizedBox(width: 20),
         Container(
-          height: 40,
-          width: 40,
+          height: 50,
+          width: 50,
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: AppColors.grayChateau, width: 1.5),
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 6,
-                offset: Offset(0, 2),
-              ),
-            ],
           ),
-          child: Image.asset(
-            'assets/images/facebook.png',
-            height: 40,
-            width: 40,
+          child: SvgPicture.asset(
+            'assets/images/facebook.svg',
+            fit: BoxFit.fill,
           ),
         ),
-        const SizedBox(width: 20),
         Container(
-          height: 40,
-          width: 40,
+          height: 45,
+          width: 45,
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: AppColors.grayChateau, width: 1.5),
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 6,
-                offset: Offset(0, 2),
-              ),
-            ],
           ),
-          child: Image.asset('assets/images/apple.png', height: 40, width: 40),
+          child: SvgPicture.asset('assets/images/apple.svg', fit: BoxFit.fill),
         ),
       ],
     );
