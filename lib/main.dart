@@ -1,4 +1,5 @@
 import 'package:bubbels/firebase_options.dart';
+import 'package:bubbels/utils/constants.dart';
 import 'package:bubbels/utils/go_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.system,
+      darkTheme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: AppColors.thunder,
+      ),
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
       // i need to add the approute

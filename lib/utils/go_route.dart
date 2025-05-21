@@ -29,7 +29,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: Login.routeName,
       name: AppRoute.login.name,
-      builder: (context, state) => const Login(),
+      builder: (context, state) => Login(),
     ),
   ],
 );
