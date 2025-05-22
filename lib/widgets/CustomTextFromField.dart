@@ -41,7 +41,7 @@ class CustomTextFromField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       validator: validator,
-      style: TextStyle(color: colorScheme.onSurface),
+      style: TextStyle(color: AppColors.paleSky), // Changed to gray color
       decoration: InputDecoration(
         filled: theme.brightness == Brightness.dark,
         fillColor: theme.brightness == Brightness.dark
