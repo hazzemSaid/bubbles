@@ -41,12 +41,11 @@ class CustomTextFromField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       validator: validator,
-      style: TextStyle(color: colorScheme.surface),
+      style: TextStyle(color: colorScheme.onSurface),
       decoration: InputDecoration(
         filled: theme.brightness == Brightness.dark,
         fillColor: theme.brightness == Brightness.dark
-            ? theme.inputDecorationTheme.fillColor ??
-                  colorScheme.surface.withOpacity(0.1)
+            ? theme.inputDecorationTheme.fillColor ?? colorScheme.surface
             : null,
         border: border,
         focusedBorder: border.copyWith(
