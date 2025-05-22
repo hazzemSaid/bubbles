@@ -20,34 +20,54 @@ class CustomTextFromField extends StatelessWidget {
   final TextEditingController controller;
   final keys;
 
-  final border = OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(10)),
-    borderSide: BorderSide(color: AppColors.grayChateau, width: 2),
-  );
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderSide: BorderSide(
+        color: theme.brightness == Brightness.dark
+            ? colorScheme.onSurface.withOpacity(0.3)
+            : AppColors.grayChateau,
+        width: 2,
+      ),
+    );
+
     return TextFormField(
       key: keys,
       keyboardType: textInputType,
       controller: controller,
       obscureText: obscureText,
       validator: validator,
+      style: TextStyle(color: colorScheme.surface),
       decoration: InputDecoration(
+        filled: theme.brightness == Brightness.dark,
+        fillColor: theme.brightness == Brightness.dark
+            ? theme.inputDecorationTheme.fillColor ??
+                  colorScheme.surface.withOpacity(0.1)
+            : null,
         border: border,
-        focusedBorder: border,
+        focusedBorder: border.copyWith(
+          borderSide: BorderSide(color: AppColors.luxorGold, width: 2),
+        ),
         enabledBorder: border,
-        errorBorder: border,
-        focusedErrorBorder: border,
+        errorBorder: border.copyWith(
+          borderSide: BorderSide(color: theme.colorScheme.error, width: 2),
+        ),
+        focusedErrorBorder: border.copyWith(
+          borderSide: BorderSide(color: theme.colorScheme.error, width: 2),
+        ),
         labelText: LabelText,
         labelStyle: AppTextStyles.interRegular.copyWith(
           fontSize: 16,
-          color: AppColors.doveGray,
+          color: colorScheme.onSurface.withOpacity(0.7),
         ),
         hintText: hintText,
         hintStyle: AppTextStyles.interRegular.copyWith(
           fontSize: 16,
-          color: AppColors.doveGray,
+          color: colorScheme.onSurface.withOpacity(0.5),
         ),
       ),
     );
