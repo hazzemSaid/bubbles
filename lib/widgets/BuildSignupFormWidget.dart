@@ -32,6 +32,9 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Form(
       key: formkey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -44,7 +47,9 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
               height: 45.h,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                color: theme.brightness == Brightness.dark
+                    ? Colors.grey.shade800
+                    : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(25.r),
               ),
               child: Row(
@@ -61,13 +66,13 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                         height: 45.h,
                         decoration: BoxDecoration(
                           color: isEmailSelected
-                              ? Colors.white
+                              ? theme.cardColor
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(25.r),
                           boxShadow: isEmailSelected
                               ? [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
+                                    color: theme.shadowColor.withOpacity(0.2),
                                     spreadRadius: 1,
                                     blurRadius: 3,
                                     offset: Offset(0, 1),
@@ -81,7 +86,7 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                           style: TextStyle(
                             color: isEmailSelected
                                 ? AppColors.luxorGold
-                                : Colors.black,
+                                : colorScheme.onSurface,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -99,13 +104,13 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                         height: 45.h,
                         decoration: BoxDecoration(
                           color: !isEmailSelected
-                              ? Colors.white
+                              ? theme.cardColor
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(25.r),
                           boxShadow: !isEmailSelected
                               ? [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
+                                    color: theme.shadowColor.withOpacity(0.2),
                                     spreadRadius: 1,
                                     blurRadius: 3,
                                     offset: Offset(0, 1),
@@ -119,7 +124,7 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                           style: TextStyle(
                             color: !isEmailSelected
                                 ? AppColors.luxorGold
-                                : Colors.black,
+                                : colorScheme.onSurface,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -237,7 +242,7 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                       text: 'By continuing, you agree to Bubbles ',
                       style: AppTextStyles.interRegular.copyWith(
                         fontSize: 14.sp,
-                        color: Colors.black87,
+                        color: colorScheme.onSurface,
                       ),
                       children: [
                         TextSpan(
@@ -248,7 +253,10 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                             decoration: TextDecoration.underline,
                           ),
                         ),
-                        TextSpan(text: ' and '),
+                        TextSpan(
+                          text: ' and ',
+                          style: TextStyle(color: colorScheme.onSurface),
+                        ),
                         TextSpan(
                           text: 'Privacy Policy',
                           style: AppTextStyles.interRegular.copyWith(
@@ -304,8 +312,8 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
               width: double.infinity,
               height: 50.h,
               decoration: BoxDecoration(
-                border: Border.all(color: AppColors.black, width: 1.w),
-                color: AppColors.white,
+                border: Border.all(color: colorScheme.onSurface, width: 1.w),
+                color: theme.cardColor,
                 borderRadius: BorderRadius.circular(10.r),
               ),
               alignment: Alignment.center,
@@ -313,7 +321,7 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                 'Login as Affiliate',
                 style: AppTextStyles.interRegular.copyWith(
                   fontSize: 16.sp,
-                  color: AppColors.black,
+                  color: colorScheme.onSurface,
                 ),
               ),
             ),
@@ -324,19 +332,25 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
           Row(
             children: [
               Expanded(
-                child: Divider(color: AppColors.grayChateau, thickness: 1.h),
+                child: Divider(
+                  color: colorScheme.onSurface.withOpacity(0.3),
+                  thickness: 1.h,
+                ),
               ),
               SizedBox(width: 10.w),
               Text(
                 'Or continue with',
                 style: AppTextStyles.interRegular.copyWith(
                   fontSize: 14.sp,
-                  color: AppColors.grayChateau,
+                  color: colorScheme.onSurface.withOpacity(0.7),
                 ),
               ),
               SizedBox(width: 10.w),
               Expanded(
-                child: Divider(color: AppColors.grayChateau, thickness: 1.h),
+                child: Divider(
+                  color: colorScheme.onSurface.withOpacity(0.3),
+                  thickness: 1.h,
+                ),
               ),
             ],
           ),
@@ -354,7 +368,7 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
                 'Already have an account? ',
                 style: AppTextStyles.interRegular.copyWith(
                   fontSize: 16.sp,
-                  color: AppColors.grayChateau,
+                  color: colorScheme.onSurface.withOpacity(0.7),
                 ),
               ),
               GestureDetector(

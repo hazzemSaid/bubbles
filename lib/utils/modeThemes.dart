@@ -2,164 +2,174 @@ import 'package:bubbels/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 final ThemeData lightThemeData = ThemeData(
-  primaryColor: Colors.grey[300],
-  scaffoldBackgroundColor: Colors.grey[200],
+  primaryColor: AppColors.luxorGold,
+  scaffoldBackgroundColor: AppColors.white,
   useMaterial3: true,
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.grey[200]!,
-    iconTheme: const IconThemeData(color: Colors.black),
-    foregroundColor: Colors.black,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: AppColors.white,
+    iconTheme: IconThemeData(color: AppColors.black),
+    foregroundColor: AppColors.black,
   ),
-  colorScheme: ColorScheme.light(
-    primary: Colors.grey[300]!,
+  colorScheme: const ColorScheme.light(
+    primary: AppColors.luxorGold,
     secondary: AppColors.luxorGold,
-    surface: Colors.grey,
-    onPrimary: Colors.black,
-    onSecondary: AppColors.luxorGold,
-    onSurface: Colors.grey[800]!,
+    surface: AppColors.wildSand,
+    onPrimary: AppColors.white,
+    onSecondary: AppColors.white,
+    onSurface: AppColors.black,
   ),
-  cardColor: Colors.white,
-  dividerColor: Colors.grey[300],
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.grey[200]!,
-    selectedItemColor: Colors.black,
-    unselectedItemColor: Colors.black54,
+  cardColor: AppColors.white,
+  dividerColor: AppColors.athensGray1,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: AppColors.white,
+    selectedItemColor: AppColors.luxorGold,
+    unselectedItemColor: AppColors.grayChateau,
   ),
-  bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),
-  tabBarTheme: TabBarThemeData(
-    labelColor: Colors.black,
-    unselectedLabelColor: Colors.black54,
-    indicator: BoxDecoration(color: Colors.grey[200]),
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: AppColors.white,
   ),
-  snackBarTheme: SnackBarThemeData(
-    backgroundColor: Colors.grey[200]!,
-    contentTextStyle: const TextStyle(color: Colors.black),
+  tabBarTheme: const TabBarThemeData(
+    labelColor: AppColors.luxorGold,
+    unselectedLabelColor: AppColors.grayChateau,
+    indicator: BoxDecoration(color: AppColors.athensGray2),
   ),
-  chipTheme: ChipThemeData(
-    backgroundColor: Colors.grey[200]!,
-    labelStyle: const TextStyle(color: Colors.black),
-    secondaryLabelStyle: const TextStyle(color: Colors.black),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: AppColors.athensGray2,
+    contentTextStyle: TextStyle(color: AppColors.black),
+  ),
+  chipTheme: const ChipThemeData(
+    backgroundColor: AppColors.athensGray2,
+    labelStyle: TextStyle(color: AppColors.black),
+    secondaryLabelStyle: TextStyle(color: AppColors.black),
     brightness: Brightness.light,
   ),
-  sliderTheme: SliderThemeData(
-    activeTrackColor: Colors.grey[200],
-    inactiveTrackColor: Colors.grey[300],
-    thumbColor: Colors.grey[300],
+  sliderTheme: const SliderThemeData(
+    activeTrackColor: AppColors.luxorGold,
+    inactiveTrackColor: AppColors.athensGray1,
+    thumbColor: AppColors.luxorGold,
   ),
   switchTheme: SwitchThemeData(
-    thumbColor: WidgetStateProperty.all(Colors.grey[200]),
-    trackColor: WidgetStateProperty.all(Colors.grey[300]),
+    thumbColor: WidgetStateProperty.all(AppColors.luxorGold),
+    trackColor: WidgetStateProperty.all(AppColors.athensGray1),
   ),
-  progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.grey[200]),
+  progressIndicatorTheme: const ProgressIndicatorThemeData(
+    color: AppColors.luxorGold,
+  ),
   tooltipTheme: TooltipThemeData(
     decoration: BoxDecoration(
-      color: Colors.grey[200],
+      color: AppColors.athensGray2,
       borderRadius: BorderRadius.circular(4),
     ),
-    textStyle: const TextStyle(color: Colors.black),
+    textStyle: const TextStyle(color: AppColors.black),
   ),
-  iconTheme: const IconThemeData(color: Colors.black),
+  iconTheme: const IconThemeData(color: AppColors.black),
   textTheme: const TextTheme(
-    bodyLarge: TextStyle(color: Colors.black),
-    bodyMedium: TextStyle(color: Colors.black),
+    bodyLarge: TextStyle(color: AppColors.black),
+    bodyMedium: TextStyle(color: AppColors.doveGray),
+    bodySmall: TextStyle(color: AppColors.grayChateau),
   ),
   textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Colors.black,
-    selectionColor: Colors.grey,
-    selectionHandleColor: Colors.black,
+    cursorColor: AppColors.luxorGold,
+    selectionColor: Color(0xFFE3D4B4), // Light version of luxorGold
+    selectionHandleColor: AppColors.luxorGold,
   ),
   dialogTheme: const DialogThemeData(
-    backgroundColor: Colors.white,
-    titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
-    contentTextStyle: TextStyle(color: Colors.black),
+    backgroundColor: AppColors.white,
+    titleTextStyle: TextStyle(color: AppColors.black, fontSize: 20),
+    contentTextStyle: TextStyle(color: AppColors.doveGray),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: Colors.black,
-    foregroundColor: Colors.white,
+    backgroundColor: AppColors.luxorGold,
+    foregroundColor: AppColors.white,
   ),
   listTileTheme: const ListTileThemeData(
-    iconColor: Colors.black,
-    textColor: Colors.black,
+    iconColor: AppColors.luxorGold,
+    textColor: AppColors.black,
   ),
 );
 
 final ThemeData darkThemeData = ThemeData(
-  primaryColor: Colors.black12,
-  scaffoldBackgroundColor: const Color.fromARGB(115, 99, 99, 92),
+  primaryColor: AppColors.luxorGold,
+  scaffoldBackgroundColor: const Color(0xFF121212), // Dark background
   appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.black,
-    iconTheme: IconThemeData(color: Colors.white),
-    foregroundColor: Colors.white,
+    backgroundColor: Color(0xFF121212),
+    iconTheme: IconThemeData(color: AppColors.white),
+    foregroundColor: AppColors.white,
   ),
   colorScheme: ColorScheme.dark(
-    primary: Colors.black,
-    secondary: Colors.grey[900]!,
-    surface: Colors.grey[850]!,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
-    onSurface: Colors.white,
+    primary: AppColors.luxorGold,
+    secondary: AppColors.luxorGold,
+    surface: const Color(0xFF1E1E1E), // Slightly lighter than background
+    onPrimary: AppColors.white,
+    onSecondary: AppColors.white,
+    onSurface: AppColors.white,
   ),
-  cardColor: Colors.grey[900],
-  dividerColor: Colors.grey[800],
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.black,
-    selectedItemColor: Colors.white,
-    unselectedItemColor: Colors.white54,
+  cardColor: const Color(0xFF1E1E1E),
+  dividerColor: const Color(0xFF2C2C2C),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Color(0xFF121212),
+    selectedItemColor: AppColors.luxorGold,
+    unselectedItemColor: Color(0xFFAAAAAA),
   ),
-  bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.black),
-  tabBarTheme: TabBarThemeData(
-    labelColor: Colors.white,
-    unselectedLabelColor: Colors.white54,
-    indicator: BoxDecoration(color: Colors.grey[900]),
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: Color(0xFF1E1E1E),
   ),
-  snackBarTheme: SnackBarThemeData(
-    backgroundColor: Colors.grey[900],
-    contentTextStyle: const TextStyle(color: Colors.white),
+  tabBarTheme: const TabBarThemeData(
+    labelColor: AppColors.luxorGold,
+    unselectedLabelColor: Color(0xFFAAAAAA),
+    indicator: BoxDecoration(color: Color(0xFF2C2C2C)),
   ),
-  chipTheme: ChipThemeData(
-    backgroundColor: Colors.grey[900]!,
-    labelStyle: const TextStyle(color: Colors.white),
-    secondaryLabelStyle: const TextStyle(color: Colors.white),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: Color(0xFF2C2C2C),
+    contentTextStyle: TextStyle(color: AppColors.white),
+  ),
+  chipTheme: const ChipThemeData(
+    backgroundColor: Color(0xFF2C2C2C),
+    labelStyle: TextStyle(color: AppColors.white),
+    secondaryLabelStyle: TextStyle(color: AppColors.white),
     brightness: Brightness.dark,
   ),
-  sliderTheme: SliderThemeData(
-    activeTrackColor: Colors.grey[800],
-    inactiveTrackColor: Colors.grey[700],
-    thumbColor: Colors.grey[900],
+  sliderTheme: const SliderThemeData(
+    activeTrackColor: AppColors.luxorGold,
+    inactiveTrackColor: Color(0xFF3C3C3C),
+    thumbColor: AppColors.luxorGold,
   ),
   switchTheme: SwitchThemeData(
-    thumbColor: WidgetStateProperty.all(Colors.grey[800]),
-    trackColor: WidgetStateProperty.all(Colors.grey[700]),
+    thumbColor: WidgetStateProperty.all(AppColors.luxorGold),
+    trackColor: WidgetStateProperty.all(const Color(0xFF3C3C3C)),
   ),
-  progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.grey[900]),
+  progressIndicatorTheme: const ProgressIndicatorThemeData(
+    color: AppColors.luxorGold,
+  ),
   tooltipTheme: TooltipThemeData(
     decoration: BoxDecoration(
-      color: Colors.grey[900],
+      color: const Color(0xFF2C2C2C),
       borderRadius: BorderRadius.circular(4),
     ),
-    textStyle: const TextStyle(color: Colors.white),
+    textStyle: const TextStyle(color: AppColors.white),
   ),
-  iconTheme: const IconThemeData(color: Colors.white),
+  iconTheme: const IconThemeData(color: AppColors.white),
   textTheme: const TextTheme(
-    bodyLarge: TextStyle(color: Colors.white),
-    bodyMedium: TextStyle(color: Colors.white),
+    bodyLarge: TextStyle(color: AppColors.white),
+    bodyMedium: TextStyle(color: Color(0xFFCCCCCC)),
+    bodySmall: TextStyle(color: Color(0xFFAAAAAA)),
   ),
   textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Colors.white,
-    selectionColor: Colors.white70,
-    selectionHandleColor: Colors.white,
+    cursorColor: AppColors.luxorGold,
+    selectionColor: Color(0xFF65574A), // Dark version of luxorGold
+    selectionHandleColor: AppColors.luxorGold,
   ),
   dialogTheme: const DialogThemeData(
-    backgroundColor: Colors.black,
-    titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-    contentTextStyle: TextStyle(color: Colors.white),
+    backgroundColor: Color(0xFF1E1E1E),
+    titleTextStyle: TextStyle(color: AppColors.white, fontSize: 20),
+    contentTextStyle: TextStyle(color: Color(0xFFCCCCCC)),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: Colors.white,
-    foregroundColor: Colors.black,
+    backgroundColor: AppColors.luxorGold,
+    foregroundColor: AppColors.white,
   ),
   listTileTheme: const ListTileThemeData(
-    iconColor: Colors.white,
-    textColor: Colors.white,
+    iconColor: AppColors.luxorGold,
+    textColor: AppColors.white,
   ),
 );

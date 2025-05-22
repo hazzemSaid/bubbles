@@ -88,7 +88,7 @@ class _LoginWithEmailWidgetState extends State<LoginWithEmailWidget> {
                 width: double.infinity,
                 height: 50.h,
                 decoration: BoxDecoration(
-                  color: colorScheme.onSecondary,
+                  color: colorScheme.primary,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 alignment: Alignment.center,
@@ -114,8 +114,11 @@ class _LoginWithEmailWidgetState extends State<LoginWithEmailWidget> {
                 width: double.infinity,
                 height: 50.h,
                 decoration: BoxDecoration(
-                  border: Border.all(color: colorScheme.onSurface, width: 1.w),
-                  color: colorScheme.surface,
+                  border: Border.all(
+                    color: colorScheme.onBackground,
+                    width: 1.w,
+                  ),
+                  color: colorScheme.background,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 alignment: Alignment.center,
@@ -209,7 +212,7 @@ class _LoginWithEmailWidgetState extends State<LoginWithEmailWidget> {
                     'Sign Up',
                     style: textTheme.bodyMedium?.copyWith(
                       fontSize: 16.sp,
-                      color: Theme.of(context).colorScheme.onSecondary,
+                      color: colorScheme.primary,
                     ),
                   ),
                 ),
