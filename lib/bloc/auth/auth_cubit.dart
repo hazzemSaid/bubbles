@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:bubbels/bloc/auth/auth_state.dart';
 import 'package:bubbels/data/repository/auth_repository.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-class AuthCubit extends Cubit<AuthState> {
+class AuthCubit extends HydratedCubit<AuthState> {
   final AuthRepository authRepository;
 
   AuthCubit(this.authRepository) : super(AuthInitial()) {
@@ -41,5 +41,28 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signOut() async {
     await authRepository.signOut();
     emit(Unauthenticated());
+  }
+
+  @override
+  AuthState? fromJson(Map<String, dynamic> json) {
+    try {
+      final isAuthenticated = json['isAuthenticated'] as bool? ?? false;
+      final userId = json['userId'] as String?;
+      if (isAuthenticated && userId != null) {
+        return Authenticated(userId);
+      }
+    } catch (e) {
+      print('Error parsing AuthState: $e');
+    }
+    return Unauthenticated();
+  }
+
+  @override
+  Map<String, dynamic>? toJson(AuthState state) {
+    if (state is Authenticated) {
+      return {'isAuthenticated': true, 'userId': state.userId};
+    } else {
+      return {'isAuthenticated': false};
+    }
   }
 }
