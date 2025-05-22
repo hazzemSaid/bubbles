@@ -1,26 +1,34 @@
+import 'package:bubbels/bloc/auth/auth_cubit.dart';
+import 'package:bubbels/data/repository/auth_repository.dart';
 import 'package:bubbels/firebase_options.dart';
 import 'package:bubbels/utils/constants.dart';
 import 'package:bubbels/utils/go_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  final authCubit = AuthCubit(AuthRepository());
 
-  runApp(const MyApp());
+  runApp(
+    BlocProvider.value(
+      value: authCubit,
+
+      child: MyApp(authCubit: authCubit),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AuthCubit authCubit;
+  const MyApp({super.key, required this.authCubit});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // Wrap with ScreenUtilInit for responsive dimensions
     return ScreenUtilInit(
-      // Design size based on standard smartphone dimensions - iPhone 12/13
       designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -33,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
           themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          routerConfig: appRouter,
+          routerConfig: appRouter(authCubit),
         );
       },
     );

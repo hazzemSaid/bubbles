@@ -1,7 +1,7 @@
-import 'package:bubbels/data/interface/AuthInterface.dart';
+import 'package:bubbels/data/interface/auth_interface.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthRepository extends Iauth {
+class AuthRepository extends IAuth {
   FirebaseAuth? _firebaseAuth;
   AuthRepository({FirebaseAuth? firebaseAuth})
     : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
