@@ -25,7 +25,8 @@ class ThemeToggleIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // Using listen: false to prevent rebuilds
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: true);
     final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
     final theme = Theme.of(context);
 
@@ -34,8 +35,10 @@ class ThemeToggleIcon extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(50),
         onTap: () {
-          print("Theme toggle tapped");
-          themeProvider.toggleTheme();
+          // Use a microtask to delay the theme change until after the current build phase
+          Future.microtask(() {
+            themeProvider.toggleTheme();
+          });
         },
         child: Ink(
           decoration: BoxDecoration(

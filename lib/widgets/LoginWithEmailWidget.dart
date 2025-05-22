@@ -1,3 +1,4 @@
+import 'package:bubbels/screens/affiliate_login_screen.dart';
 import 'package:bubbels/utils/go_route.dart';
 import 'package:bubbels/widgets/CustomTextFromField.dart';
 import 'package:bubbels/widgets/LoginOAuthButton.dart';
@@ -105,10 +106,7 @@ class _LoginWithEmailWidgetState extends State<LoginWithEmailWidget> {
             SizedBox(height: 5.h),
             GestureDetector(
               onTap: () {
-                if (formKey.currentState!.validate()) {
-                  // Perform login action
-                  // Use a logging framework in production
-                }
+                context.pushNamed(AppRoute.affiliateLogin.name);
               },
               child: Container(
                 width: double.infinity,

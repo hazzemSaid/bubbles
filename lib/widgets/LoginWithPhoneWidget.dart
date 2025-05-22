@@ -1,3 +1,4 @@
+import 'package:bubbels/screens/affiliate_login_screen.dart';
 import 'package:bubbels/utils/go_route.dart';
 import 'package:bubbels/widgets/CustomTextFromField.dart';
 import 'package:bubbels/widgets/LoginOAuthButton.dart';
@@ -104,7 +105,10 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
             ),
             SizedBox(height: 5.h),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                // Navigate to the affiliate login screen
+                context.pushNamed(AppRoute.affiliateLogin.name);
+              },
               child: Container(
                 width: double.infinity,
                 height: 50.h,
