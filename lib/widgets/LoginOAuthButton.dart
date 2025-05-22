@@ -16,7 +16,7 @@ class LoginOAuthButton extends StatelessWidget {
           height: 45,
           width: 45,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color.fromARGB(0, 255, 255, 255),
             borderRadius: BorderRadius.circular(8),
           ),
           child: SvgPicture.asset('assets/images/google.svg', fit: BoxFit.fill),
@@ -25,7 +25,7 @@ class LoginOAuthButton extends StatelessWidget {
           height: 50,
           width: 50,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color.fromARGB(0, 255, 255, 255),
             borderRadius: BorderRadius.circular(8),
           ),
           child: SvgPicture.asset(
@@ -37,7 +37,7 @@ class LoginOAuthButton extends StatelessWidget {
           height: 45,
           width: 45,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color.fromARGB(0, 255, 255, 255),
             borderRadius: BorderRadius.circular(8),
           ),
           child: SvgPicture.asset('assets/images/apple.svg', fit: BoxFit.fill),

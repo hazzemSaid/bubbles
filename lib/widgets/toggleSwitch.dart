@@ -1,4 +1,3 @@
-import 'package:bubbels/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,10 +13,13 @@ class ToggleSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       height: 45.h,
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: colorScheme.surfaceVariant,
         borderRadius: BorderRadius.circular(25.r),
       ),
       child: Row(
@@ -28,12 +30,16 @@ class ToggleSwitch extends StatelessWidget {
               child: Container(
                 height: 45.h,
                 decoration: BoxDecoration(
-                  color: isEmailSelected ? Colors.white : Colors.transparent,
+                  color: isEmailSelected
+                      ? colorScheme.background
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(25.r),
                   boxShadow: isEmailSelected
                       ? [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
+                            color: colorScheme.shadow.withAlpha(
+                              51,
+                            ), // 20% opacity
                             spreadRadius: 1,
                             blurRadius: 3,
                             offset: Offset(0, 1),
@@ -44,8 +50,10 @@ class ToggleSwitch extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   'Email',
-                  style: TextStyle(
-                    color: isEmailSelected ? AppColors.luxorGold : Colors.black,
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: isEmailSelected
+                        ? colorScheme.primary
+                        : colorScheme.onSurface,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -58,12 +66,16 @@ class ToggleSwitch extends StatelessWidget {
               child: Container(
                 height: 45.h,
                 decoration: BoxDecoration(
-                  color: !isEmailSelected ? Colors.white : Colors.transparent,
+                  color: !isEmailSelected
+                      ? colorScheme.background
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(25.r),
                   boxShadow: !isEmailSelected
                       ? [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
+                            color: colorScheme.shadow.withAlpha(
+                              51,
+                            ), // 20% opacity
                             spreadRadius: 1,
                             blurRadius: 3,
                             offset: Offset(0, 1),
@@ -74,10 +86,10 @@ class ToggleSwitch extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   'Phone',
-                  style: TextStyle(
+                  style: textTheme.bodyMedium?.copyWith(
                     color: !isEmailSelected
-                        ? AppColors.luxorGold
-                        : Colors.black,
+                        ? colorScheme.primary
+                        : colorScheme.onSurface,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
