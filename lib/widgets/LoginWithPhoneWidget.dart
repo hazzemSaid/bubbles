@@ -1,4 +1,3 @@
-import 'package:bubbels/utils/constants.dart';
 import 'package:bubbels/utils/go_route.dart';
 import 'package:bubbels/widgets/CustomTextFromField.dart';
 import 'package:bubbels/widgets/LoginOAuthButton.dart';
@@ -7,14 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginWithPhoneWidget extends StatefulWidget {
-  LoginWithPhoneWidget({super.key});
+  const LoginWithPhoneWidget({super.key});
 
   @override
   State<LoginWithPhoneWidget> createState() => _LoginWithPhoneWidgetState();
 }
 
 class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
-  final formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -27,15 +26,18 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Form(
-      key: formkey,
+      key: _formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 0.w),
         child: Column(
           children: [
             CustomTextFromField(
-              keys: PageStorageKey('phone'),
+              keys: const PageStorageKey('phone'),
               LabelText: 'Phone Number',
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -50,7 +52,7 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
             ),
             SizedBox(height: 8.h),
             CustomTextFromField(
-              keys: PageStorageKey('password'),
+              keys: const PageStorageKey('password'),
               LabelText: 'Password',
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -68,19 +70,17 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
               alignment: Alignment.centerRight,
               child: Text(
                 'Forgot Password?',
-                style: AppTextStyles.interRegular.copyWith(
+                style: textTheme.bodyMedium?.copyWith(
                   fontSize: 16.sp,
-                  color: AppColors.luxorGold,
+                  color: colorScheme.primary,
                 ),
               ),
             ),
             SizedBox(height: 7.h),
             GestureDetector(
               onTap: () {
-                if (formkey.currentState!.validate()) {
+                if (_formKey.currentState!.validate()) {
                   // Perform login action
-                  print('Phone: ${phoneController.text}');
-                  print('Password: ${passwordController.text}');
                   // Add your authentication logic here
                 }
               },
@@ -88,16 +88,16 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
                 width: double.infinity,
                 height: 50.h,
                 decoration: BoxDecoration(
-                  color: AppColors.luxorGold,
+                  color: colorScheme.primary,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 alignment: Alignment.center,
                 margin: EdgeInsets.only(top: 5.h),
                 child: Text(
                   'Sign In',
-                  style: AppTextStyles.interRegular.copyWith(
+                  style: textTheme.bodyMedium?.copyWith(
                     fontSize: 16.sp,
-                    color: AppColors.white,
+                    color: colorScheme.onPrimary,
                   ),
                 ),
               ),
@@ -109,17 +109,20 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
                 width: double.infinity,
                 height: 50.h,
                 decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.black, width: 1.w),
-                  color: AppColors.white,
+                  border: Border.all(
+                    color: colorScheme.onBackground,
+                    width: 1.w,
+                  ),
+                  color: colorScheme.background,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 alignment: Alignment.center,
                 margin: EdgeInsets.only(top: 5.h),
                 child: Text(
                   'Login as Affiliate',
-                  style: AppTextStyles.interRegular.copyWith(
+                  style: textTheme.bodyMedium?.copyWith(
                     fontSize: 16.sp,
-                    color: AppColors.black,
+                    color: colorScheme.onBackground,
                   ),
                 ),
               ),
@@ -128,41 +131,41 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
             Row(
               children: [
                 Expanded(
-                  child: Divider(color: AppColors.grayChateau, thickness: 1.h),
+                  child: Divider(color: colorScheme.outline, thickness: 1.h),
                 ),
                 SizedBox(width: 4.w),
                 Text(
                   'Or continue with',
-                  style: AppTextStyles.interRegular.copyWith(
+                  style: textTheme.bodyMedium?.copyWith(
                     fontSize: 16.sp,
-                    color: AppColors.grayChateau,
+                    color: colorScheme.outline,
                   ),
                 ),
                 SizedBox(width: 4.w),
                 Expanded(
-                  child: Divider(color: AppColors.grayChateau, thickness: 1.h),
+                  child: Divider(color: colorScheme.outline, thickness: 1.h),
                 ),
               ],
             ),
             SizedBox(height: 5.h),
-            LoginOAuthButton(),
+            const LoginOAuthButton(),
             SizedBox(height: 5.h),
             Row(
               children: [
                 Expanded(
-                  child: Divider(color: AppColors.grayChateau, thickness: 1.h),
+                  child: Divider(color: colorScheme.outline, thickness: 1.h),
                 ),
                 SizedBox(width: 4.w),
                 Text(
                   'Or',
-                  style: AppTextStyles.interRegular.copyWith(
+                  style: textTheme.bodyMedium?.copyWith(
                     fontSize: 16.sp,
-                    color: AppColors.grayChateau,
+                    color: colorScheme.outline,
                   ),
                 ),
                 SizedBox(width: 4.w),
                 Expanded(
-                  child: Divider(color: AppColors.grayChateau, thickness: 1.h),
+                  child: Divider(color: colorScheme.outline, thickness: 1.h),
                 ),
               ],
             ),
@@ -172,14 +175,14 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
               width: double.infinity,
               height: 50.h,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(53, 195, 192, 192),
+                color: colorScheme.surfaceVariant,
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: Text(
                 'continue as guest',
-                style: AppTextStyles.interRegular.copyWith(
+                style: textTheme.bodyMedium?.copyWith(
                   fontSize: 16.sp,
-                  color: AppColors.black,
+                  color: colorScheme.onSurface,
                 ),
               ),
             ),
@@ -190,9 +193,9 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
               children: [
                 Text(
                   'Dont have an account? ',
-                  style: AppTextStyles.interRegular.copyWith(
+                  style: textTheme.bodyMedium?.copyWith(
                     fontSize: 16.sp,
-                    color: AppColors.grayChateau,
+                    color: colorScheme.outline,
                   ),
                 ),
                 GestureDetector(
@@ -202,9 +205,9 @@ class _LoginWithPhoneWidgetState extends State<LoginWithPhoneWidget> {
                   },
                   child: Text(
                     'Sign Up',
-                    style: AppTextStyles.interRegular.copyWith(
+                    style: textTheme.bodyMedium?.copyWith(
                       fontSize: 16.sp,
-                      color: AppColors.luxorGold,
+                      color: colorScheme.primary,
                     ),
                   ),
                 ),

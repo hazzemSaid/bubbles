@@ -1,6 +1,6 @@
 import 'package:bubbels/firebase_options.dart';
-import 'package:bubbels/utils/constants.dart';
 import 'package:bubbels/utils/go_route.dart';
+import 'package:bubbels/utils/modeThemes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,11 +27,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp.router(
           title: 'Bubbles',
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: AppColors.thunder,
-          ),
-          themeMode: ThemeMode.light,
+          theme: lightThemeData,
+          darkTheme: darkThemeData,
+          themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           routerConfig: appRouter,
         );
