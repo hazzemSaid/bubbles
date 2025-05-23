@@ -14,17 +14,11 @@ GoRouter appRouter(AuthCubit authCubit) {
   return GoRouter(
     initialLocation: Login.routeName,
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
-    // Add redirectLimit to prevent excessive redirects
-    redirectLimit: 1,
 
+    // Add redirectLimit to prevent excessive redirects
     redirect: (BuildContext context, GoRouterState state) {
       final authState = authCubit.state;
-
-      if (state.extra != null &&
-          state.extra is Map &&
-          (state.extra as Map)['skipRedirect'] == true) {
-        return null;
-      }
+      print('Auth State: $authState');
 
       final isLoggedIn = authState is Authenticated;
       final loggingIn =
@@ -60,7 +54,7 @@ GoRouter appRouter(AuthCubit authCubit) {
         builder: (context, state) => const AffiliateLogin(),
       ),
       GoRoute(
-        path: '/home',
+        path: HomeScreen.routeName,
         name: AppRoute.home.name,
         builder: (context, state) => const HomeScreen(),
       ),

@@ -22,16 +22,19 @@ class AuthCubit extends HydratedCubit<AuthState> {
     emit(AuthLoading());
     try {
       await authRepository.signInWithEmailAndPassword(email, password);
+      emit(AuthSuccess());
       checkAuthStatus();
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
   }
 
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(String email, String password, String name) async {
     emit(AuthLoading());
     try {
       await authRepository.signUpWithEmailAndPassword(email, password);
+      emit(AuthSuccess());
+      await authRepository.saveUserToDatabase(name);
       checkAuthStatus();
     } catch (e) {
       emit(AuthFailure(e.toString()));

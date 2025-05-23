@@ -1,3 +1,4 @@
+import 'package:bubbels/controllers/signupcontroller.dart';
 import 'package:bubbels/utils/constants.dart';
 import 'package:bubbels/widgets/CustomTextFromField.dart';
 import 'package:bubbels/widgets/LoginOAuthButton.dart';
@@ -278,9 +279,12 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
           GestureDetector(
             onTap: () {
               if (formkey.currentState!.validate()) {
-                // Perform sign up action
-                print(
-                  'Sign Up with ${isEmailSelected ? "Email" : "Phone"} validated',
+                // Handle sign up logic
+                signupcontroller(
+                  context,
+                  emailController.text,
+                  passwordController.text,
+                  fullNameController.text,
                 );
               }
             },

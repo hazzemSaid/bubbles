@@ -1,4 +1,5 @@
 import 'package:bubbels/data/interface/auth_interface.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository extends IAuth {
@@ -22,14 +23,14 @@ class AuthRepository extends IAuth {
   }
 
   @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<void> signOut() async {
+    await _firebaseAuth?.signOut();
+    return;
   }
 
   @override
   Future<void> signUpWithEmailAndPassword(String email, String password) async {
-    _firebaseAuth?.createUserWithEmailAndPassword(
+    await _firebaseAuth?.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -39,6 +40,19 @@ class AuthRepository extends IAuth {
   Future<void> updateProfile(String name, String photoUrl) {
     // TODO: implement updateProfile
     throw UnimplementedError();
+  }
+
+  Future<void> saveUserToDatabase(String name) async {
+    final user = _firebaseAuth?.currentUser;
+
+    await FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
+      'name': name,
+      'uid': user?.uid,
+      'phoneNumber': user?.phoneNumber,
+      'displayName': user?.displayName,
+      'email': user?.email,
+      'photoUrl': user?.photoURL,
+    });
   }
 
   User? get currentUser => _firebaseAuth?.currentUser;

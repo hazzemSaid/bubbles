@@ -1,4 +1,5 @@
 import 'package:bubbels/bloc/auth/auth_cubit.dart';
+import 'package:bubbels/blocobserve.dart';
 import 'package:bubbels/data/repository/auth_repository.dart';
 import 'package:bubbels/firebase_options.dart';
 import 'package:bubbels/utils/go_route.dart';
@@ -22,7 +23,7 @@ void main() async {
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
-
+  Bloc.observer = MyBlocObserver();
   final authCubit = AuthCubit(AuthRepository());
   final router = appRouter(authCubit);
   runApp(

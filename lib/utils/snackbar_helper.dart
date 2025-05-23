@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 class SnackBarHelper {
-  static void showSnackBar(BuildContext context, String message) {
+  static ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+  showSnackBar({
+    required BuildContext context,
+    required String message,
+    SnackBarClosedReason? reason,
+    Duration? duration,
+    required Color backgroundColor,
+    required Color textColor,
+    SnackBarAction? action,
+  }) {
     final snackBar = SnackBar(
-      content: Text(message),
-      duration: const Duration(seconds: 2),
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.black87,
-      action: SnackBarAction(
-        label: 'OK',
-        textColor: Colors.white,
-        onPressed: () {
-          // later in your code
-        },
-      ),
+      content: Text(message, style: TextStyle(color: textColor)),
+      backgroundColor: backgroundColor,
+      duration: duration ?? const Duration(seconds: 3),
+      action: action,
     );
 
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    return ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

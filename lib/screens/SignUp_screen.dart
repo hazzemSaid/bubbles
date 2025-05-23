@@ -1,29 +1,55 @@
+import 'package:bubbels/bloc/auth/auth_cubit.dart';
+import 'package:bubbels/bloc/auth/auth_state.dart';
 import 'package:bubbels/utils/constants.dart';
+import 'package:bubbels/utils/snackbar_helper.dart';
 import 'package:bubbels/widgets/BuildSignupFormWidget.dart';
+import 'package:bubbels/widgets/LoadingWidgetAnimation.dart';
+import 'package:bubbels/widgets/SignUpContent.dart';
 import 'package:bubbels/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUp extends StatefulWidget {
+class SignUp extends StatelessWidget {
   const SignUp({super.key});
   static const String routeName = '/signup';
 
-  @override
-  State<SignUp> createState() => _SignUpState();
-}
+  void _handleAuthState(BuildContext context, AuthState state) {
+    if (state is AuthLoading) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const LoadingWidgetAnimation(),
+      );
+    } else if (state is AuthFailure) {
+      if (Navigator.canPop(context)) Navigator.of(context).pop();
+      final theme = Theme.of(context);
+      SnackBarHelper.showSnackBar(
+        context: context,
+        message: state.error,
+        backgroundColor: Colors.red,
+        textColor: theme.colorScheme.onError,
+      );
+    } else if (state is AuthSuccess) {
+      if (Navigator.canPop(context)) Navigator.of(context).pop();
+      SnackBarHelper.showSnackBar(
+        context: context,
+        message: "Account created successfully",
+        backgroundColor: Colors.green,
+        textColor: Theme.of(context).colorScheme.onPrimary,
+      );
+    }
+  }
 
-class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Stack(
           children: [
-            // Main content
             SingleChildScrollView(
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: 1.sh),
@@ -33,62 +59,22 @@ class _SignUpState extends State<SignUp> {
                       horizontal: 20.w,
                       vertical: 5.h,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 40.h,
-                          width: 1.sw,
-                        ), // Increased top margin
-                        Center(
-                          child: SizedBox(
-                            width: 90.w,
-                            height: 90.h,
-                            child: Image.asset(
-                              'assets/images/logo1.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        Center(
-                          child: Text(
-                            "Create Account",
-                            style: AppTextStyles.semanticHeading1.copyWith(
-                              fontSize: 24.sp,
-                              color: colorScheme.onSurface,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8.h),
-                        Center(
-                          child: Text(
-                            "Sign up to get started",
-                            style: AppTextStyles.interRegular.copyWith(
-                              fontSize: 16.sp,
-                              color: colorScheme.onSurface.withOpacity(0.6),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const BuildSignupFormWidget(),
-                      ],
+                    child: BlocListener<AuthCubit, AuthState>(
+                      listener: _handleAuthState,
+                      child: const SignUpContent(),
                     ),
                   ),
                 ),
               ),
             ),
 
-            // Theme toggle button positioned in top right with a larger tap area
+            // Theme toggle in top right
             Positioned(
               top: 10.h,
               right: 10.w,
-              child: Container(
-                width: 48.w, // Larger width for easier tapping
-                height: 48.h, // Larger height for easier tapping
-                alignment: Alignment.center,
+              child: SizedBox(
+                width: 48.w,
+                height: 48.h,
                 child: const ThemeToggleIcon(),
               ),
             ),
