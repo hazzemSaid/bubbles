@@ -3,12 +3,13 @@ import 'package:bubbels/bloc/auth/auth_state.dart';
 import 'package:bubbels/screens/Login_screen.dart';
 import 'package:bubbels/screens/SignUp_screen.dart';
 import 'package:bubbels/screens/affiliate_login_screen.dart';
+import 'package:bubbels/screens/affiliate_signup_screen.dart';
 import 'package:bubbels/screens/home_screen.dart';
 import 'package:bubbels/utils/GoRouterRefreshStream.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-enum AppRoute { login, signup, home, affiliateLogin }
+enum AppRoute { login, signup, home, affiliateLogin, affiliateSignup }
 
 GoRouter appRouter(AuthCubit authCubit) {
   return GoRouter(
@@ -24,7 +25,8 @@ GoRouter appRouter(AuthCubit authCubit) {
       final loggingIn =
           state.fullPath == Login.routeName ||
           state.fullPath == SignUp.routeName ||
-          state.fullPath == AffiliateLogin.routeName;
+          state.fullPath == AffiliateLogin.routeName ||
+          state.fullPath == AffiliateSignUp.routeName;
 
       if (!isLoggedIn && !loggingIn) {
         return Login.routeName;
@@ -52,6 +54,11 @@ GoRouter appRouter(AuthCubit authCubit) {
         path: AffiliateLogin.routeName,
         name: AppRoute.affiliateLogin.name,
         builder: (context, state) => const AffiliateLogin(),
+      ),
+      GoRoute(
+        path: AffiliateSignUp.routeName,
+        name: AppRoute.affiliateSignup.name,
+        builder: (context, state) => const AffiliateSignUp(),
       ),
       GoRoute(
         path: HomeScreen.routeName,

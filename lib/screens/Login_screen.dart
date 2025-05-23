@@ -99,21 +99,47 @@ class contentLoginWidget extends StatelessWidget {
       );
     } else if (state is AuthFailure) {
       if (Navigator.canPop(context)) Navigator.of(context).pop();
+
       final theme = Theme.of(context);
+
+      // Enhanced error message handling
+      String errorMessage = state.error;
+
+      // Handle specific error cases with user-friendly messages
+      if (errorMessage.contains('Google Sign-In failed')) {
+        errorMessage = 'Google Sign-In failed. Please try again.';
+      } else if (errorMessage.contains(
+        'firebase_auth/network-request-failed',
+      )) {
+        errorMessage = 'Network error. Please check your connection.';
+      } else if (errorMessage.contains('wrong-password') ||
+          errorMessage.contains('user-not-found') ||
+          errorMessage.contains('invalid-credential')) {
+        errorMessage = "Email or password is wrong. Please try again.";
+      } else if (errorMessage.contains('too-many-requests')) {
+        errorMessage = "Too many failed attempts. Please try again later.";
+      } else {
+        errorMessage = "Unknown Error, Please try again.";
+      }
+
       SnackBarHelper.showSnackBar(
         context: context,
-        message: state.error,
+        message: errorMessage,
         backgroundColor: Colors.red,
         textColor: theme.colorScheme.onError,
+        duration: const Duration(seconds: 4),
       );
     } else if (state is AuthSuccess) {
       if (Navigator.canPop(context)) Navigator.of(context).pop();
       SnackBarHelper.showSnackBar(
         context: context,
-        message: "sign in successfully",
+        message: "Sign in successful",
         backgroundColor: Colors.green,
         textColor: Theme.of(context).colorScheme.onPrimary,
       );
+    } else if (state is AuthInitial) {
+      // This handles the case when Google sign-in is canceled
+      if (Navigator.canPop(context)) Navigator.of(context).pop();
     }
   }
 

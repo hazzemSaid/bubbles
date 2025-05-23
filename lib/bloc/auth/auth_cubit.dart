@@ -1,5 +1,6 @@
 import 'package:bubbels/bloc/auth/auth_state.dart';
 import 'package:bubbels/data/repository/auth_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class AuthCubit extends HydratedCubit<AuthState> {
@@ -44,6 +45,21 @@ class AuthCubit extends HydratedCubit<AuthState> {
   Future<void> signOut() async {
     await authRepository.signOut();
     emit(Unauthenticated());
+  }
+
+  Future<void> signInWithGoogle() async {
+    emit(AuthLoading());
+    try {
+      final userCredential = await authRepository.signInWithGoogle();
+      if (userCredential != null) {
+        emit(AuthSuccess());
+        checkAuthStatus();
+      } else {
+        emit(AuthFailure('Google Sign-In failed'));
+      }
+    } catch (e) {
+      emit(AuthFailure(e.toString()));
+    }
   }
 
   @override

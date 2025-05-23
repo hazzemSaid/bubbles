@@ -23,6 +23,12 @@ class SignUp extends StatelessWidget {
       );
     } else if (state is AuthFailure) {
       if (Navigator.canPop(context)) Navigator.of(context).pop();
+
+      // Skip Google sign-in errors as they're handled in LoginOAuthButton
+      if (state.error.contains('Google Sign-In failed')) {
+        return;
+      }
+
       final theme = Theme.of(context);
       SnackBarHelper.showSnackBar(
         context: context,

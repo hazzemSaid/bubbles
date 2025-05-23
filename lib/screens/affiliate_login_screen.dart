@@ -4,6 +4,7 @@ import 'package:bubbels/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:bubbels/screens/affiliate_signup_screen.dart';
 
 class AffiliateLogin extends StatefulWidget {
   const AffiliateLogin({super.key});
@@ -226,8 +227,8 @@ class _AffiliateLoginState extends State<AffiliateLogin> {
               // Become Affiliates button
               GestureDetector(
                 onTap: () {
-                  // TODO: Implement become affiliates logic
-                  print('Become Affiliates tapped');
+                  // Navigate to affiliate signup page
+                  context.push(AffiliateSignUp.routeName);
                 },
                 child: Container(
                   width: double.infinity,
