@@ -19,7 +19,10 @@ class AuthRepository extends IAuth {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) async {
-    _firebaseAuth?.signInWithEmailAndPassword(email: email, password: password);
+    await _firebaseAuth?.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
   @override

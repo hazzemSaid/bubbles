@@ -1,8 +1,9 @@
-import 'package:bubbels/screens/affiliate_login_screen.dart';
+import 'package:bubbels/bloc/auth/auth_cubit.dart';
 import 'package:bubbels/utils/go_route.dart';
 import 'package:bubbels/widgets/CustomTextFromField.dart';
 import 'package:bubbels/widgets/LoginOAuthButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -81,8 +82,9 @@ class _LoginWithEmailWidgetState extends State<LoginWithEmailWidget> {
             GestureDetector(
               onTap: () {
                 if (formKey.currentState!.validate()) {
-                  // Perform login action
-                  // Use a logging framework in production
+                  BlocProvider.of<AuthCubit>(
+                    context,
+                  ).signIn(emailController.text, passwordController.text);
                 }
               },
               child: Container(
