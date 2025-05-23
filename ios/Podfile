@@ -1,0 +1,14 @@
+platform :ios, '13.0' # ✅ Set the platform explicitly
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers! # ✅ Recommended for some Flutter plugins
+
+  # Pods for Runner
+
+  target 'RunnerTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
