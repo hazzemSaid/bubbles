@@ -4,6 +4,8 @@ import 'package:bubbels/widgets/CustomTextFromField.dart';
 import 'package:bubbels/widgets/LoginOAuthButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:bubbels/screens/affiliate_signup_screen.dart';
 
 class BuildSignupFormWidget extends StatefulWidget {
   const BuildSignupFormWidget({super.key});
@@ -310,22 +312,25 @@ class _BuildSignupFormWidgetState extends State<BuildSignupFormWidget> {
           // Login as Affiliate Button
           GestureDetector(
             onTap: () {
-              // Handle affiliate login
+              // Navigate to the affiliate signup page
+              context.push(AffiliateSignUp.routeName);
             },
             child: Container(
               width: double.infinity,
               height: 50.h,
               decoration: BoxDecoration(
-                border: Border.all(color: colorScheme.onSurface, width: 1.w),
-                color: theme.cardColor,
+                color: const Color(
+                  0xFF1C3A8C,
+                ), // Blue button matching the affiliate screens
                 borderRadius: BorderRadius.circular(10.r),
               ),
               alignment: Alignment.center,
               child: Text(
-                'Login as Affiliate',
-                style: AppTextStyles.interRegular.copyWith(
+                'Become an Affiliate',
+                style: TextStyle(
                   fontSize: 16.sp,
-                  color: colorScheme.onSurface,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
